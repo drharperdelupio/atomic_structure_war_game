@@ -812,8 +812,18 @@
     el("studentCard").disabled = true;
     el("computerCard").disabled = true;
 
-    el("studentCard").classList.add(winningSide === "student" ? "correct" : (choice === "student" ? "incorrect" : ""));
-    el("computerCard").classList.add(winningSide === "computer" ? "correct" : (choice === "computer" ? "incorrect" : ""));
+    // Mark the winning card, and mark the selected losing card when the answer is incorrect.
+    if (winningSide === "student") {
+      el("studentCard").classList.add("correct");
+    } else if (choice === "student") {
+      el("studentCard").classList.add("incorrect");
+    }
+
+    if (winningSide === "computer") {
+      el("computerCard").classList.add("correct");
+    } else if (choice === "computer") {
+      el("computerCard").classList.add("incorrect");
+    }
 
     const fb = el("feedback");
     fb.className = `feedback ${isCorrect ? "good" : "bad"}`;
